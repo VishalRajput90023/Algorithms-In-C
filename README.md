@@ -1,1 +1,1 @@
-# Algorithms-in-C-C-
+# Algorithms-in-C/C++
