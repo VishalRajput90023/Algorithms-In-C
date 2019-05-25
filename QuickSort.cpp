@@ -1,73 +1,37 @@
-/* C implementation QuickSort */
-#include<stdio.h> 
+#include<iostream>
+using namespace std;
+int partition(int arr[],int low,int high){
+  int pivot = arr[high];
+  int temp,t;
+  int i = low-1;//partitioning index
+  for(int j = low;j<=high-1;j++){
+  	if(arr[j]<=pivot){
+  		i++;
+     temp = arr[i];
+     arr[i] = arr[j];
+     arr[j] = temp;
 
-// A utility function to swap two elements 
-void swap(int* a, int* b) 
-{ 
-	int t = *a; 
-	*a = *b; 
-	*b = t; 
-} 
-
-/* This function takes last element as pivot, places 
-the pivot element at its correct position in sorted 
-	array, and places all smaller (smaller than pivot) 
-to left of pivot and all greater elements to right 
-of pivot */
-int partition (int arr[], int low, int high) 
-{ 
-	int pivot = arr[high]; // pivot 
-	int i = (low - 1); // Index of smaller element 
-
-	for (int j = low; j <= high- 1; j++) 
-	{ 
-		// If current element is smaller than or 
-		// equal to pivot 
-		if (arr[j] <= pivot) 
-		{ 
-			i++; // increment index of smaller element 
-			swap(&arr[i], &arr[j]); 
-		} 
-	} 
-	swap(&arr[i + 1], &arr[high]); 
-	return (i + 1); 
-} 
-
-/* The main function that implements QuickSort 
-arr[] --> Array to be sorted, 
-low --> Starting index, 
-high --> Ending index */
-void quickSort(int arr[], int low, int high) 
-{ 
-	if (low < high) 
-	{ 
-		/* pi is partitioning index, arr[p] is now 
-		at right place */
-		int pi = partition(arr, low, high); 
-
-		// Separately sort elements before 
-		// partition and after partition 
-		quickSort(arr, low, pi - 1); 
-		quickSort(arr, pi + 1, high); 
-	} 
-} 
-
-/* Function to print an array */
-void printArray(int arr[], int size) 
-{ 
-	int i; 
-	for (i=0; i < size; i++) 
-		printf("%d ", arr[i]); 
-	printf("n"); 
-} 
-
-// Driver program to test above functions 
-int main() 
-{ 
-	int arr[] = {10, 7, 8, 9, 1, 5}; 
-	int n = sizeof(arr)/sizeof(arr[0]); 
-	quickSort(arr, 0, n-1); 
-	printf("Sorted array: n"); 
-	printArray(arr, n); 
-	return 0; 
-} 
+  	}
+  }
+  t = arr[i+1];
+  arr[i+1] = arr[high];
+  arr[high] = t;
+  return (i+1);
+}
+void QuickSort(int arr[],int l,int r){
+	if(l<r){//Base COndition
+     int pindex = partition(arr,l,r);
+     QuickSort(arr,l,pindex-1);
+     QuickSort(arr,pindex+1,r);
+	}
+}
+int main(){
+	int n;
+	int arr[] = {38,27,43,3,9,82,10};
+	n = 7;
+	QuickSort(arr,0,n-1);//Function Call
+	for(int i=0;i<n;i++){
+		cout<<arr[i]<<" ";
+	}
+	return 0;
+}
