@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int t; //Test Cases
+    scanf("%d", &t);
+    long long int d = 0;
+    while(t--)
+    {
+        long long int x;
+        long long int y;
+        long long int temp;
+
+        scanf("%lli%lli", &x, &y);
+
+        if (y >= x)
+        {
+            d = y - x;
+            
+            if (d % 2 == 0)
+            {
+                if(d == 0){
+                printf("0\n");
+                    
+                }
+            else{
+                //d is even
+                temp = d / 2;
+                if (temp % 2 == 0)
+                {
+                    //temp is even
+                    printf("3\n");
+                }
+                if(temp%2 != 0)
+                {
+                    //temp is odd
+                    printf("2\n");
+                }
+            }
+            }
+            else
+            {
+                //d is odd
+                printf("1\n");
+            }
+        }
+        else
+        {
+            d = y - x;
+    
+            if (d % 2 == 0)
+            { //d is even
+                printf("1\n");
+            }
+            else
+            {
+                //d is odd
+                printf("2\n");
+            }
+        }
+    }
+}
